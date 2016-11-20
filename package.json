@@ -1,6 +1,6 @@
 {
   "name": "em-media-query",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Transform min/max-width/height media queries to ems.",
   "main": "index.js",
   "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
