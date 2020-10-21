@@ -4,7 +4,8 @@
 
 Transform min/max-width/height media queries to ems.
 
-This is a low-level module. You’re probably looking for [PostCSS][postcss-plugin] or [Babel][babel-plugin] plugin.
+This is a low-level module. You’re probably looking for
+[PostCSS][postcss-plugin] or [Babel][babel-plugin] plugin.
 
 ## Install
 
@@ -15,7 +16,7 @@ npm install em-media-query --save
 ## Usage
 
 ```js
-const meMediaQuery = require('em-media-query');
+import meMediaQuery from 'em-media-query';
 
 console.log(emMediaQuery('screen and (min-width:600px)'));
 // 'screen and (min-width:37.5em)'
@@ -25,11 +26,11 @@ console.log(emMediaQuery('screen and (min-width:600px)'));
 
 ### emMediaQuery(str, [opts])
 
-Returns: `String`
+Returns: `string`
 
 #### str
 
-Type: `String`
+Type: `string`
 
 Media query to convert.
 
@@ -39,7 +40,7 @@ Type: `Object`
 
 ##### precision
 
-Type: `Integer`  
+Type: `number`  
 Default: `5`
 
 Rounding precision for values.
@@ -48,7 +49,11 @@ Rounding precision for values.
 
 MIT © [Ivan Nikolić](http://ivannikolic.com)
 
-[ci]: https://travis-ci.org/niksy/em-media-query
-[ci-img]: https://img.shields.io/travis/niksy/em-media-query.svg
+<!-- prettier-ignore-start -->
+
+[ci]: https://travis-ci.com/niksy/em-media-query
+[ci-img]: https://travis-ci.com/niksy/em-media-query.svg?branch=master
 [postcss-plugin]: https://github.com/niksy/postcss-em-media-query
 [babel-plugin]: https://github.com/niksy/babel-plugin-em-media-query
+
+<!-- prettier-ignore-end -->

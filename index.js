@@ -1,53 +1,48 @@
-'use strict';
-
-const parse = require('postcss-value-parser');
-const round = require('lodash.round');
+import parse from 'postcss-value-parser';
+import round from 'lodash.round';
 
 /**
- * @param  {String} str
- * @param  {Object} opts
+ * @param {string} string
+ * @param {object} options
  *
- * @return {String}
+ * @returns {string}
  */
-module.exports = ( str, opts ) => {
+export default (string, options) => {
+	options = { precision: 5, ...options };
 
-	opts = Object.assign({
-		precision: 5
-	}, opts);
+	const tree = parse(string);
 
-	const tree = parse(str);
-
-	tree.walk(( node ) => {
-
-		if ( node.type === 'function' ) {
-
+	tree.walk((node) => {
+		if (node.type === 'function') {
 			const values = node.nodes;
-			const minMax = values.some(( item ) => {
+			const minMax = values.some((item) => {
 				return /(?:min|max)-(?:width|height)/.test(item.value);
 			});
 
 			// If we are working with min/max-width/height query
-			if ( minMax ) {
+			if (minMax) {
 				values
 
 					// Work only with pixel values
-					.filter(( item ) => {
+					.filter((item) => {
 						const value = parse.unit(item.value);
-						return item.type === 'word' && (value && value.unit === 'px');
+						return (
+							item.type === 'word' && value && value.unit === 'px'
+						);
 					})
 
 					// Convert to ems
-					.map(( item ) => {
+					.map((item) => {
 						const value = parse.unit(item.value);
-						item.value = [round(Number(value.number) / 16, opts.precision), 'em'].join('');
+						item.value = [
+							round(Number(value.number) / 16, options.precision),
+							'em'
+						].join('');
 						return item;
 					});
 			}
-
 		}
-
 	});
 
 	return tree.toString();
-
 };
